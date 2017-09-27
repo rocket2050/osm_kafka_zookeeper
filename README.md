@@ -43,3 +43,14 @@ To customize, change the variables under `playbooks/group_vars` and `playbooks/r
 
 For a one-node cluster, set `nodes_count` in `playbooks/group_vars/all` to 1.
 
+## [Installation of Zookeeper Only]
+
+In order to install only zookeeper, just remove the following lines from the kafka.yml
+
+- name: "Apply the kafka role to the Kafka nodes"
+  hosts: kafka-nodes
+  become: yes
+  roles:
+    - kafka
+    
+By removing this, it will work for zookeeper installation also.
