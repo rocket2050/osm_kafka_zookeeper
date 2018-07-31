@@ -1,0 +1,25 @@
+---
+- name: install zookeeper on ubuntu 
+  apt: 
+        name: zookeeperd
+        state: latest
+
+- name: download kafka tar ball 
+  unarchive: 
+        src: "{{ kafka_version_ubuntu }}"
+        dest: "{{ kafka_home }}"
+        remote_src: yes
+
+- name: rename kafka 
+  command: mv "{{ kafka_home }}/{{ kaf_ver_ubuntu }}" "{{ kafka_home }}/kafka"
+  ignore_errors: yes
+
+- name: doing to do configuration part of kafka
+  template: 
+        src: server.properties.j2
+        dest: "{{ kafka_root_dir }}/config/server.properties"
+        backup: yes
+
+- name: Start kafka service 
+  command: "{{ kafka_root_dir }}/bin/kafka-server-start.sh -daemon {{ kafka_root_dir }}/config/server.properties"
+

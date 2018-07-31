@@ -1,0 +1,26 @@
+---
+- name: download and install kafka 
+  unarchive: 
+        src: "{{ kafka_version }}"
+        dest: "{{ kafka_home }}"
+        remote_src: yes
+        
+- name: creating kafka log directory
+  file: name={{ kafka_log }} state=directory mode={{ permission_mode }}
+
+- name: rename kafka 
+  command: mv "{{ kafka_home }}/{{ kaf_ver }}" "{{ kafka_home }}kafka"
+  ignore_errors: yes
+
+- name: doing to do configuration part of kafka
+  template: 
+        src: server.properties.j2
+        dest: "{{ kafka_root_dir }}/config/server.properties"
+        backup: yes
+ 
+- name: Start kafka service 
+  command: "{{ kafka_root_dir }}/bin/kafka-server-start.sh -daemon {{ kafka_root_dir }}/config/server.properties"
+
+
+
+

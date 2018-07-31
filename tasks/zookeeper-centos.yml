@@ -1,0 +1,27 @@
+---
+- name: download kafka tar ball file and extract it 
+  unarchive: src={{ zookeeper_version }} dest={{ zookeeper_home }} remote_src=yes 
+
+- name: Going to remane directory  
+  command: mv {{ zookeeper_home }}/{{ zookeeper_ver }} {{ zookeeper_home }}/zookeeper
+  ignore_errors: yes
+
+- name: Going to configure zookeeper properties file
+  file: name=zookeeper.properties dest="{{ zookeeper_root_dir }}/conf/" mode={{ permission_mode }} state=touch
+
+- name: create dataDir directory 
+  file: path={{ datadir }} state=directory mode={{ permission_mode }} owner={{ dir_owner }} group={{ dir_group }}
+
+- name: going to copy zookeeper jija to /opt/zookeeper/conf/zookeeper.properties
+  template: src=/etc/ansible/roles/kafka-cluster/templates/zoo.j2 dest="{{ zookeeper_root_dir }}conf/zookeeper.properties" mode={{ permission_mode }} backup=yes
+
+- name: Going to create my_id file 
+  command: touch {{ myid_dir }}/myid mode={{ permission_mode }} 
+
+- name: Add Server ID for respective instance
+  command: echo '1' {{ myid_dir }}/myid
+
+- name: start zookeeper
+  command: "{{ zookeeper_root_dir }}bin/zkServer.sh start {{ zookeeper_root_dir }}conf/zookeeper.properties"
+
+

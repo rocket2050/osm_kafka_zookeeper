@@ -1,56 +1,38 @@
-ansible-kafka
----------
-This Ansible playbook will build a Kafka cluster with Zookeeper.
+Role Name
+=========
 
+A brief description of the role goes here.
 
----
+Requirements
+------------
 
+Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
 
+Role Variables
+--------------
 
+A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
 
-## [Requirements] (id:requirements)
+Dependencies
+------------
 
-- Ansible >= 2.0.
+A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
 
-- Expects RHEL/CentOS 6/7 or Ubuntu 14 hosts.
+Example Playbook
+----------------
 
-- Building the Rackspace Cloud environment requires the `pyrax` Python module: [pyrax link](https://github.com/rackspace/pyrax).
+Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
+    - hosts: servers
+      roles:
+         - { role: username.rolename, x: 42 }
 
-## [Features] (id:features)
+License
+-------
 
-- It installs Zookeeper for Kafka (Zookeeper is installed on the first 3 nodes only).
+BSD
 
+Author Information
+------------------
 
-
-- The data drives can be customized and can be put on top of Rackspace Cloud Block Storage.
-
-- It includes init scripts for both Zookeeper and Kafka.
-
-
-
-  
-
-
-
-## [Configuration] (id:configuration)
-
-To customize, change the variables under `playbooks/group_vars` and `playbooks/roles` folders:
-
-1. **playbooks/group_vars/all**: contains cluster and cloud settings
-1. **playbooks/roles/zookeeper/defaults/main.yml**: Zookeeper specific settings
-1. **playbooks/roles/kafka/defaults/main.yml**: Kafka specific settings
-
-For a one-node cluster, set `nodes_count` in `playbooks/group_vars/all` to 1.
-
-## [Installation of Zookeeper Only]
-```
-In order to install only zookeeper, just remove the following lines from the kafka.yml
-
-- name: "Apply the kafka role to the Kafka nodes"
-  hosts: kafka-nodes
-  become: yes
-  roles:
-    - kafka
-````    
-By removing this, it will work for zookeeper installation also.
+An optional section for the role authors to include contact information, or a website (HTML is not allowed).

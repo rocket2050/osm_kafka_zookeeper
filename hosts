@@ -1,4 +1,0 @@
-[kafka-nodes]
-kafka1 ansible_host=192.168.33.82  ansible_user=root 
-kafka2 ansible_host=192.168.33.83  ansible_user=root 
-kafka3 ansible_host=192.168.33.40  ansible_user=root 

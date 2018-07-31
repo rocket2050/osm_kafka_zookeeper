@@ -1,0 +1,36 @@
+---
+# vars file for kafka-cluster
+
+zookeeper_version: "http://mirror.cc.columbia.edu/pub/software/apache/zookeeper/zookeeper-3.4.10/zookeeper-3.4.10.tar.gz"
+zookeeper_ver: 'zookeeper-3.4.10'
+datadir: /tmp/zookeeper/
+myid_dir: /tmp/zookeeper/
+client_port: 2181
+max_client_conn: 200
+permission_mode: 755
+zookeeper_root_dir: "/opt/zookeeper/"
+zookeeper_home: /opt
+dir_owner: root
+dir_group: root 
+
+
+####################### Kafka Variable #########################
+
+kafka_version: 'http://www-eu.apache.org/dist/kafka/2.0.0/kafka_2.11-2.0.0.tgz' 
+kafka_home: /opt/
+kafka_root_dir: "{{ kafka_home }}/kafka"
+
+kaf_ver: kafka_2.11-2.0.0
+
+kafka_log: /tmp/kafka-logs
+
+broker_id: 1
+
+zookeeper_conn_timeut: 16000
+
+
+######################## Variable for ubuntu ########################
+
+kafka_version_ubuntu: 'http://www-eu.apache.org/dist/kafka/1.0.1/kafka_2.12-1.0.1.tgz'
+kaf_ver_ubuntu: kafka_2.12-1.0.1
+

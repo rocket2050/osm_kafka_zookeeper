@@ -1,0 +1,12 @@
+---
+# tasks file for kafka-cluster
+
+- name : install zookeeper on centos
+  block: 
+  #- import_tasks: zookeeper-centos.yml
+  - import_tasks: kafka-centos.yml
+  when: ansible_os_family == "RedHat"
+
+- name: install kafka on ubuntu 
+  import_tasks: kafka-ubuntu.yml
+  when: ansible_os_family == "Debian"

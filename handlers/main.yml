@@ -1,0 +1,10 @@
+---
+# handlers file for kafka-cluster
+
+
+#- name: start zookeeper 
+#  command: {{ zookeeper_root_dir }}/bin/zkServer.sh stop {{ zookeeper_root_dir }}/conf/zookeeper.properties    
+
+#- name: start zookeeper
+#  command: {{ zookeeper_root_dir }}/bin/zkServer.sh start {{ zookeeper_root_dir }}/conf/zookeeper.properties
+
