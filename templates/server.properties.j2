@@ -120,18 +120,21 @@ log.retention.check.interval.ms=300000
 # server. e.g. "127.0.0.1:3000,127.0.0.1:3001,127.0.0.1:3002".
 # You can also append an optional chroot string to the urls to specify the
 # root directory for all kafka znodes.
-{% for server in zookeeper_hosts %}
-{% if server.host is defined %}
-{% if server.ip is defined %}
-zookeeper.connect={{server.ip}}:2181
-{% else %}
-zookeeper.connect={{server.host}}:2181
-{% endif %}
-{% else %}
-server.{{loop.index}}={{server}}:2181
-{% endif %}
-{% endfor %}
+#{% for server in zookeeper_hosts %}
+#{% if server.host is defined %}
+#{% if server.ip is defined %}
+#zookeeper.connect={{server.ip}}:2181
+#{% else %}
+#zookeeper.connect={{server.host}}:2181
+#{% endif %}
+#{% else %}
+#server.{{loop.index}}={{server}}:2181
+#{% endif %}
+#{% endfor %}
 # Timeout in ms for connecting to zookeeper
+
+zookeeper.connect={% for host in groups['cluster-kafka'] %} {{host}}:2181,{% endfor %}
+##########################################################################################
 zookeeper.connection.timeout.ms={{ zookeeper_conn_timeut }}
 
 

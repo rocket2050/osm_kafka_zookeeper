@@ -4,6 +4,7 @@
 - name : install zookeeper on centos
   block: 
   #- import_tasks: zookeeper-centos.yml
+  - import_tasks: zookeeper-centos.yml
   - import_tasks: kafka-centos.yml
   when: ansible_os_family == "RedHat"
 

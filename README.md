@@ -1,18 +1,37 @@
 Role Name
-=========
 
-Kafka and zookeeper installation 
+This role is to install and configite kafka with zookeeper on cluster 
+
+
+Requirements
+
+RedHat or Debin OS Family 
+
+
+Role Variables
+
+Are in defaults/main.yml, vars/main.yml
+
+
+Dependencies
+
+Java 8 or 7 need to be installed before 
 
 
 Example Playbook
-----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+ansible-playbook elastic-search.yml 
 
-   ansible-playbook kafka.yml
+
+- hosts: cluster-kafka
+  remote_user: root
+  tasks: 
+    - include_role: 
+	name: kafka-cluster
+
+change the hosts accordingly 
+
 
 License
--------
 
 BSD
-

@@ -19,7 +19,7 @@
         backup: yes
  
 - name: Start kafka service 
-  command: "{{ kafka_root_dir }}/bin/kafka-server-start.sh -daemon {{ kafka_root_dir }}/config/server.properties"
+  shell: "nohup {{ kafka_root_dir }}/bin/kafka-server-start.sh -daemon {{ kafka_root_dir }}/config/server.properties &"
 
 
 
